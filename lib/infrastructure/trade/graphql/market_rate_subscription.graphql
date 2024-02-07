@@ -1,0 +1,7 @@
+subscription MarketRate($market: String!){
+    marketRate(market: $market){
+        market,
+        rate,
+        ts
+    }
+}

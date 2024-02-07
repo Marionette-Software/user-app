@@ -1,0 +1,9 @@
+query GetMarketDynamics($market: String!) {
+  marketDynamics(market: $market) {
+    startPrice
+    lastPrice
+    amount24h
+    lowPrice
+    highPrice
+  }
+}

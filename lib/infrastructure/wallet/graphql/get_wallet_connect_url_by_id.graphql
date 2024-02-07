@@ -1,0 +1,3 @@
+mutation  getWalletConnectURIById($currencyPaymentInterface:String!){
+  getWalletConnectURI(currencyPaymentInterfaceId:$currencyPaymentInterface)
+}

@@ -1,0 +1,3 @@
+mutation CreateCurrencyState($currencyId: String!, $amount: Float!) {
+  createStake(currencyId: $currencyId, amount: $amount)
+}

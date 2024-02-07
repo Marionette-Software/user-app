@@ -1,0 +1,14 @@
+query PublicOrderBook($market: String!){
+    publicOrderBook(market: $market) {
+        buy {
+            price
+            amount
+            cumulativeAmount
+        }
+        sell {
+            price
+            amount
+            cumulativeAmount
+        }
+    }
+}

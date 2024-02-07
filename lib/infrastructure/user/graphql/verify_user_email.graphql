@@ -1,0 +1,3 @@
+mutation VerifyEmailToken($token: String!, $isFront: Boolean) {
+  verifyEmail(token: $token, isFront: $isFront)
+}

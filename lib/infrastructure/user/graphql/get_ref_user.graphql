@@ -1,0 +1,10 @@
+query GetRefUser {
+  refUser {
+    id
+    refCode
+    referralsByLevel {
+      level
+      count
+    }
+  }
+}

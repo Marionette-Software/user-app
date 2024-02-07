@@ -1,0 +1,17 @@
+mutation InitNonCustodialClassic(
+  $inPaymentInterfaceId: String!
+  $inCurrencyId: String!
+  $amount: Float!
+  $recipientId: String!
+) {
+  initNonCustodialExchange(
+    inPaymentInterfaceId: $inPaymentInterfaceId
+    inCurrencyId: $inCurrencyId
+    amount: $amount
+    recipientId: $recipientId
+  ) {
+    address
+    encodedAddress
+    redirectUrl
+  }
+}

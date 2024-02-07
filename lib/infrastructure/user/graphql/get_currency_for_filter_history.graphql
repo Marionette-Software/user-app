@@ -1,0 +1,7 @@
+query GetCurrencyForFilterHistory($id: String) {
+  user(id: $id) {
+    currencies {
+      id
+    }
+  }
+}

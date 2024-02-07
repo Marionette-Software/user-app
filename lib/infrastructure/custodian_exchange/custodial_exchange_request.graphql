@@ -1,0 +1,11 @@
+mutation UserExchange(
+    $currencyFrom: String!,
+    $currencyTo: String!,
+    $amount: Float!,
+){
+    userExchange(
+        fromCurrencyId: $currencyFrom,
+        toCurrencyId: $currencyTo,
+        amount: $amount
+    )
+}

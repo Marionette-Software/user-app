@@ -1,0 +1,3 @@
+mutation DeleteApiKeyAction($id: String! $otp_code: String) {
+  deleteApiKey(id: $id otp_code: $otp_code)
+}

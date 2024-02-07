@@ -1,0 +1,16 @@
+mutation FiatGenerateWallet(
+  $currencyId: String!
+  $paymentInterfaceId: String!
+  $isDonation: Boolean!
+) {
+  generateWallet(
+    currencyId: $currencyId
+    paymentInterfaceId: $paymentInterfaceId
+    isDonation: $isDonation
+  ) {
+    deposit {
+      address
+      encodedAddress
+    }
+  }
+}

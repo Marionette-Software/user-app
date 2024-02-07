@@ -1,0 +1,20 @@
+query GetCurrencyChainsData($currencyId: String!) {
+  currencyChains(currencyId: $currencyId) {
+    id
+    title
+    subtitle
+    currencyPaymentInterfaces {
+      id
+      minDirectDepositAmount
+      directDepositFee
+      minDirectDepositFee
+      maxDirectDepositFee
+      paymentInterface {
+        logoUrl
+        id
+        title
+        subtitle
+      }
+    }
+  }
+}

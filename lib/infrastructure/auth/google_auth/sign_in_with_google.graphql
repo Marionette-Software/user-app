@@ -1,0 +1,15 @@
+mutation SignUpWithGoogle(
+  $token: String!
+  $code: String
+  $referralId: String
+) {
+  signWithGoogle(
+    token: $token
+    code: $code
+    referralId: $referralId
+  ){
+    token
+    id
+    email
+  }
+}

@@ -1,0 +1,8 @@
+query GetCurrencies{
+    currencies{
+        id
+        name
+        icon_url
+
+    }
+}

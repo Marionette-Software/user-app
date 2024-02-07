@@ -1,0 +1,3 @@
+query KYCDocumentTypes {
+    KYCDocumentTypes
+}

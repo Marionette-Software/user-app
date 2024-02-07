@@ -1,0 +1,10 @@
+query GetPublicTradesHistory($market: String) {
+  publicTrades(market: $market) {
+    result {
+      price
+      amount
+      createdAt
+      makerOrderSide
+    }
+  }
+}

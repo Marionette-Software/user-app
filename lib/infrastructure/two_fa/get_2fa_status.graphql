@@ -1,0 +1,5 @@
+query Get2FaStatus($id: String) {
+  user(id: $id) {
+    enabled2fa
+  }
+}

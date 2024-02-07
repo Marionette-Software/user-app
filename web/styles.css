@@ -1,0 +1,38 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+  }
+
+body{
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100vw
+}
+.svg_1{
+	align-items: center;
+	height: 80px;
+	width: 115px;
+	display: block;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.svg_2{
+	margin-top: 30px;
+	align-items: center;
+	height: 66px;
+	width:  386.91px;
+	display: block;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+.a {
+
+   	animation: pulse 2s linear infinite;
+}

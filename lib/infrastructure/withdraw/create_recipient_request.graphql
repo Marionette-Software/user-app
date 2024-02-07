@@ -1,0 +1,17 @@
+mutation CreateRecipient(
+  $paymentInterfaceId: String!
+  $currencyId: String!
+  $data: String!
+  $description: String!
+) {
+  createRecipient(
+    paymentInterfaceId: $paymentInterfaceId
+    currencyId: $currencyId
+    data: $data
+    description: $description
+  ) {
+    id
+    data
+    description
+  }
+}

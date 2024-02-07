@@ -1,0 +1,10 @@
+subscription GetUserBalanceUpdated($token: String!) {
+  userBalanceUpdated(token: $token) {
+    currencyId
+    balance
+    advancedTradingLockedBalance
+    advancedTradingBalance
+    ts
+    lockedBalance
+  }
+}

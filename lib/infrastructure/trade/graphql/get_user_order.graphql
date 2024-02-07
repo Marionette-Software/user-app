@@ -1,0 +1,6 @@
+query GetUserOrder($id: String) {
+  userOrder(id: $id) {
+    id
+    status
+  }
+}

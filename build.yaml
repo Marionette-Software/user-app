@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      ferry_generator|graphql_builder:
+        enabled: true
+        options:
+          schema: user_app|lib/infrastructure/schema.graphql
+          type_overrides:
+            Upload:
+              name: MultipartFile
+              import: 'package:http/http.dart'
+      ferry_generator|serializer_builder:
+              enabled: true
+              options:
+                schema: user_app|lib/infrastructure/schema.graphql
+                custom_serializers:
+                  - import: 'package:user_app/infrastructure/upload_serializer.dart'
+                    name: UploadSerializer

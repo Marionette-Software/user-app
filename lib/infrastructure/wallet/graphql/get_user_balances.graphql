@@ -1,0 +1,15 @@
+query GetUserBalances($id: String) {
+  user(id: $id) {
+    currencies {
+      id
+      enabled
+      balance
+      advancedTradingBalance
+      advancedTradingLockedBalance
+      lockedBalance
+      withdrawLockedBalance
+      stakingLockedBalance
+      activeStakingBalance
+    }
+  }
+}

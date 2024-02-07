@@ -1,0 +1,39 @@
+query GetMarket($id: String!) {
+  market(id: $id) {
+    isFavorite
+    id
+    rate
+    enable_trading
+    quote_currency {
+      id
+      precision
+      icon_url
+      name
+      userBalanceEnable
+      enabled
+    }
+    base_currency {
+      id
+      precision
+      icon_url
+      name
+      userBalanceEnable
+      enabled
+    }
+    change24
+    trading_min_price
+    trading_max_price
+    trading_min_amount
+    trading_price_precision
+    trading_amount_precision
+    trading_position
+    marketDynamics {
+      marketId
+      startPrice
+      amount24h
+      lastPrice
+      lowPrice
+      highPrice
+    }
+  }
+}

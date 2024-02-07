@@ -1,0 +1,24 @@
+mutation InitiateNonCustodianExchange(
+    $currencyFrom:String,
+    $paymentInterfaceFrom: String,
+    $currencyTo: String,
+    $paymentInterfaceTo: String,
+    $paymentInterfaceToData: String,
+    $amount: Float
+)
+{
+    userExchange(
+        #currencyFrom: $currencyFrom,
+        #paymentInterfaceFrom: $paymentInterfaceFrom,
+        #currencyTo: $currencyTo,
+        #paymentInterfaceTo: $paymentInterfaceTo,
+        #paymentInterfaceToData: $paymentInterfaceToData,
+        fromCurrencyId: $currencyFrom,
+        toCurrencyId: $currencyTo,
+        amount: $amount
+    )
+    #{
+    #    address
+    #    encodedAddress
+    #}
+}

@@ -1,0 +1,14 @@
+subscription PublicFullOrderBookSubscription($market: String!){
+    publicFullOrderBook(market: $market) {
+        buy {
+            price
+            amount
+            cumulativeAmount
+        }
+        sell {
+            price
+            amount
+            cumulativeAmount
+        }
+    }
+}

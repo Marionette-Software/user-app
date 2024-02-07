@@ -1,0 +1,18 @@
+mutation CreateOrder(
+  $market: String!
+  $side: String!
+  $type: String!
+  $price: Float
+  $amount: Float!
+) {
+  openOrder(
+    market: $market
+    side: $side
+    type: $type
+    price: $price
+    amount: $amount
+  ) {
+    id
+    status
+  }
+}

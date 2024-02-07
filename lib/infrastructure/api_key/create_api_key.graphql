@@ -1,0 +1,19 @@
+mutation CreateUserApiKey(
+  $description: String
+  $expires: Int!
+  $scope: String
+  $otp_code: String
+) {
+  createApiKey(
+    description: $description
+    expires: $expires
+    scope: $scope
+    otp_code: $otp_code
+  ){
+    id
+    description
+    scope
+    expires
+    token
+  }
+}

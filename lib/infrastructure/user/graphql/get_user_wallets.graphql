@@ -1,0 +1,72 @@
+query GetUserWallets($id: String) {
+  user(id: $id) {
+    currencies {
+      id
+      name
+      icon_url
+      position
+      precision
+      enabled
+      lightBgColor1
+      lightBgColor2
+      darkBgColor1
+      darkBgColor2
+      lightTextColor
+      staking_enabled
+      isUnstakingProcess
+      isFavorite
+      markets {
+        id
+        isFavorite
+        marketDynamics {
+          marketId
+          startPrice
+          amount24h
+          lastPrice
+          lowPrice
+          highPrice
+        }
+        base_currency {
+          id
+          name
+          icon_url
+          precision
+          userBalanceEnable
+          enabled
+        }
+        quote_currency {
+          id
+          name
+          icon_url
+          precision
+          userBalanceEnable
+          enabled
+        }
+        rate
+        minBaseCurrencyAmount
+        minQuoteCurrencyAmount
+        commission_currency
+        buy_commission
+        buy_min_commission
+        buy_max_commission
+        sell_commission
+        sell_min_commission
+        sell_max_commission
+        buy_commission
+        buy_max_commission
+        buy_min_commission
+        sell_commission
+        sell_max_commission
+        sell_min_commission
+        enable_custodial_exchange
+        enabled
+        swapBaseToQuotePricePrecision
+        swapQuoteToBasePricePrecision
+        enable_trading
+        trading_min_amount
+        trading_price_precision
+        trading_amount_precision
+      }
+    }
+  }
+}

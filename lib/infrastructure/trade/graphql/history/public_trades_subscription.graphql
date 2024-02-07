@@ -1,0 +1,8 @@
+subscription PublicTradesSubscription($market: String!) {
+  publicTrades(market: $market) {
+    price
+    amount
+    createdAt
+    makerOrderSide
+  }
+}

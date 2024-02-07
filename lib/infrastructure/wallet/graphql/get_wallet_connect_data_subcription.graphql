@@ -1,0 +1,10 @@
+subscription connectToWallet($token:String!) {
+  walletToConnect(token:$token) {
+    address
+    paymentInterface {
+      id
+    }
+    action
+    chainId
+  }
+}

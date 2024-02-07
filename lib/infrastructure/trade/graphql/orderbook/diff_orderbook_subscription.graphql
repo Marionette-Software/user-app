@@ -1,0 +1,12 @@
+subscription PublicDiffOrderBookSubscription($market: String!){
+    publicDiffOrderBook(market: $market){
+        buy {
+            price
+            amountDiff
+        }
+        sell {
+            price
+            amountDiff
+        }
+    }
+}

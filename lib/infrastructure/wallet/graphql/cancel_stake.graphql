@@ -1,0 +1,3 @@
+mutation CancelCurrencyState($currencyId: String!) {
+  cancelStake(currencyId: $currencyId)
+}

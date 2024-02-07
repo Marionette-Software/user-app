@@ -1,0 +1,19 @@
+query WalletHistoryKline(
+  $market: String!
+  $interval: String!
+  $timeFrom: Int!
+  $timeTo: Int!
+) {
+  kline(
+    market: $market
+    interval: $interval
+    timeFrom: $timeFrom
+    timeTo: $timeTo
+  ) {
+    close
+    low
+    high
+    timestamp
+    volume
+  }
+}

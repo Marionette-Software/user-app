@@ -1,0 +1,22 @@
+query GetDepositWalletPaymentInterface($id: String!) {
+  currency(id: $id) {
+    currencyPaymentInterfaces {
+      userDepositEnable
+      userDirectDepositEnabled
+      enable
+      id
+      minDirectDepositAmount
+      type
+      paymentInterface {
+        id
+        title
+        logoUrl
+        subtitle
+      }
+      currency {
+        id
+        icon_url
+      }
+    }
+  }
+}

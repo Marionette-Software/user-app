@@ -1,0 +1,5 @@
+mutation signatureRequestWalletConnect($chainId:Int!,$address:String!){
+  connectWallet(chainId: $chainId, address:$address) {
+    id
+  }
+}

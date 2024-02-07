@@ -1,0 +1,34 @@
+mutation GenerateDepositAddress(
+  $currencyId: String!
+  $paymentInterfaceId: String!
+  $isDonation: Boolean!
+) {
+  generateWallet(
+    currencyId: $currencyId
+    paymentInterfaceId: $paymentInterfaceId
+    isDonation: $isDonation
+  ) {
+    id
+    type
+    paymentInterface {
+      id
+      title
+      logoUrl
+      subtitle
+    }
+    currency {
+      id
+      icon_url
+    }
+    deposit {
+      address
+      encodedAddress
+      redirectUrl
+      depositCommission
+      minDepositCommission
+      maxDepositCommission
+      minDepositAmount
+      maxDepositAmount
+    }
+  }
+}

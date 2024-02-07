@@ -1,0 +1,52 @@
+query GetUserHistory(
+  $currencyId: String
+  $limit: Int
+  $page: Int
+  $type: String
+  $from: String
+  $to: String
+) {
+  history(
+    page: $page
+    limit: $limit
+    currencyId: $currencyId
+    type: $type
+    from: $from
+    to: $to
+  ) {
+    result {
+      id
+      createdAt
+      status
+      initiator_type
+      initiator_currency {
+        id
+        precision
+        icon_url
+        precision
+        currencyPaymentInterfaces {
+          type
+          paymentInterfaceId
+        }
+      }
+      initiator_payment_interface {
+        title
+        subtitle
+      }
+      initiator_payment_interface_id
+      initiator_amount
+      initiator_explorer_transaction
+      initiator_txid
+      result_txid
+      initiator_fee
+      result_currency {
+        id
+        precision
+        icon_url
+        position
+      }
+      result_payment_interface_id
+      result_amount
+    }
+  }
+}

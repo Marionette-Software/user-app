@@ -1,0 +1,1885 @@
+scalar Date
+
+scalar Timestamp
+
+# The `Upload` scalar type represents a file upload.
+scalar Upload
+
+type Query {
+  refCode: String
+  refGroup(id: String!): RefGroup
+  refOTPGroup(id: String!): RefOTPGroup
+  refGroups: [RefGroup]
+  refOTPGroups: [RefOTPGroup]
+  userReferrals(id: String): [UserReferral]
+  userByRefCode(code: String): User
+  adminRefCode(userId: String!): RefCode
+  refUser(userId: String): RefUser
+  refUsers(email: String): [RefUser]
+  apiKeys: [ApiKey]
+  adminDonateProjectBonuses(donateProjectId: String!): [DonateBonusToken]
+  donateProjects: [DonateProject]
+  donateProjectCategs: [DonateProjectCateg]
+  donateProject(id: String): DonateProject
+  donateProjectCateg(id: String): DonateProjectCateg
+  adminUserRecipients(
+    userId: String!
+    paymentInterfaceId: String
+    currencyId: String
+  ): [Recipient]
+  paymentInterfaces(currencyId: String): [PaymentInterface]
+  paymentInterface(id: String): PaymentInterface
+  countries: [Country]
+  stakingRewardsHistory(
+    currencyId: String
+    page: Int
+    limit: Int
+  ): StakingRewardsHistoryPaginated
+  stakingCurrencies: [StakingCurrency]
+  stakingCurrency(id: String!): StakingCurrency
+  swapInMarkets(inputCurrencyId: String!): [Market]
+  markets: [Market]
+  market(id: String): Market
+  operationFilters: OperationFilters
+  history(
+    page: Int
+    limit: Int
+    currencyId: String
+    type: String
+    from: String
+    to: String
+  ): UserOperationsPaginated
+  transactionHistory(
+    page: Int
+    limit: Int
+    currencyId: String
+    type: String
+    from: String
+    to: String
+  ): UserOperationsPaginated
+  walletHistory(
+    currencyId: String
+    historyPage: Int
+    historyLimit: Int
+  ): WalletHistory
+  adminUserCurrencyOperations(
+    currencyId: String!
+    userId: String!
+    page: Int
+    limit: Int
+  ): AdminUserCurrencyOperations
+  adminUserLedgerRecords(
+    currencyId: String!
+    userId: String!
+    account: Int!
+    page: Int
+    limit: Int
+  ): AdminUserLedgerRecordsPaginated
+  adminLiabilitiesAssestsReport(reportCurrency: String): [LiabilitiesAssests]
+  operationStatuses: OperationStatus
+  operationTypes: [String]
+  operations(
+    from: String
+    to: String
+    email: String
+    page: Int
+    limit: Int
+    status: String
+    isPending: Boolean
+    type: String
+    txid: String
+    withChildren: Boolean
+    initiator_currency_id: String
+    result_currency_id: String
+  ): PaginatedOperations
+  operation(id: String): Operation
+  ledgerRecordsByOperation(id: String): [LedgerRecord]
+  icoAdditionalSchema: [String]
+  currencies(hide: Boolean, userBalanceEnabled: Boolean): [Currency]
+  adminCurrencies(currencyName: String, isEnabled: Boolean): [AdminCurrency]
+  adminCurrency(id: String): AdminCurrency
+  currency(id: String): Currency
+  adminUserCurrencies(userId: String!): [AdminUserCurrency]
+  manualRates: [ManualRate]
+  users(
+    email: String
+    role: String
+    state: String
+    softban: Boolean
+    from: String
+    to: String
+    limit: Int
+    page: Int
+    label: String
+  ): PaginatedUsers
+  user(id: String): User
+  kycWaitingUsers: [User]
+  softBannedUsers(email: String, page: Int, limit: Int): PaginatedUsers
+  KYCDocumentTypes: [String]
+  getTrackingDetails(
+    userId: String!
+    limit: Int
+    page: Int
+  ): TrackingDetailsResult
+  allMarketsRate: [AdminRate]
+  marketRate(marketId: String): Float
+  historical(market: String!, range: String!): [Historical]
+  changeRate(market: String!, range: String!): ChangeRate
+  userByDepositAddress(address: String!): User
+  connectedWallets: [Wallet]
+  currencyChains(currencyId: String): [Chain]
+  adminUserNonCustodialWallets(userId: String!): NonCustodialWallet
+  baseWallet: Wallet
+  adminUserCurrencyBalance(
+    userId: String
+    currencyId: String
+    account: Int
+  ): Float
+  walletBalance(blockchain_id: String, currency: String): String
+  blockchains: [Blockchain]
+  blockchain(id: String): Blockchain
+  getLogs(limit: Int, page: Int, level: Int): MessageLogPaginated
+  userOrder(id: String): Order
+  adminOrder(id: String): Order
+  userOrders(
+    market: String
+    status: String
+    page: Int
+    limit: Int
+  ): OrdersPaginated
+  adminOrders(
+    market: String
+    email: String
+    from: String
+    to: String
+    status: String
+    type: String
+    side: String
+    page: Int
+    limit: Int
+  ): OrdersPaginated
+  userTrades(
+    market: String
+    status: String
+    page: Int
+    limit: Int
+  ): UserTradesPaginated
+  adminTrades(
+    market: String
+    buyUserEmail: String
+    sellUserEmail: String
+    from: String
+    to: String
+    page: Int
+    limit: Int
+  ): AdminTradesPaginated
+  publicTrades(market: String, page: Int, limit: Int): PublicTradesPaginated
+  allMarketLastPrices: [MarketLastPrice]
+  marketDynamics(market: String): MarketDynamics
+  publicOrderBook(market: String!): OrderBook
+  kline(
+    market: String!
+    interval: String!
+    timeFrom: Int!
+    timeTo: Int!
+  ): [KLine]
+  serverTime: String
+}
+
+type Mutation {
+  saveRefGroup(
+    id: String
+    name: String
+    description: String
+    oneTimePayments: [RefGroupOTPaymentInput]
+    levels: [RefGroupPercentageInput]
+  ): RefGroup
+  saveRefOTPGroup(
+    id: String
+    name: String
+    description: String
+    oneTimePayments: [RefGroupOTPaymentInput]
+  ): RefOTPGroup
+  updateUserRefGroup(
+    userId: String!
+    refGroupId: String
+    refOTPGroupId: String
+  ): String
+  loginWithPhoneStep1(phone: String): Boolean
+  loginWithPhoneStep2(phone: String, code: String): User
+  request2FA: String
+  turnOn2FA(code: String!): String
+  login(email: String, password: String, code: String): User
+  logout: Boolean
+  deleteApiKey(id: String!, otp_code: String): String
+  createApiKey(
+    description: String
+    expires: Int!
+    scope: String
+    otp_code: String
+  ): ApiKey
+  createDonateProject(
+    name: String!
+    description: String
+    project_url: String
+    max_amount: Float
+    currencyId: String!
+    coordinatorUserId: String!
+    enabled: Boolean!
+    featured: Boolean
+    categId: String
+  ): DonateProject
+  createDonateProjectCateg(
+    name: String!
+    description: String
+    enabled: Boolean!
+  ): DonateProjectCateg
+  updateDonateProject(
+    id: String
+    name: String
+    project_url: String
+    currencyId: String
+    coordinatorUserId: String
+    max_amount: Float
+    description: String
+    enabled: Boolean
+    featured: Boolean
+    categId: String
+  ): DonateProject
+  updateDonateProjectCateg(
+    id: String
+    name: String
+    description: String
+    enabled: Boolean
+  ): DonateProjectCateg
+  editPictureDonateProject(id: String, file: Upload): DonateProject
+  editPictureDonateProjectCateg(id: String, file: Upload): DonateProjectCateg
+  editIconDonateProject(id: String, file: Upload): DonateProject
+  editIconDonateProjectCateg(id: String, file: Upload): DonateProjectCateg
+  selectProjects(projects: String): [DonateBonusToken]
+  editBonusDonateProjects(
+    donateProjectId: String!
+    bonusDonate: [InputBonusDonate]
+  ): String
+  transferFromHotToHot(
+    fromPaymentInterface: String!
+    toPaymentInterface: String!
+    amount: Float!
+    currencyId: String!
+    preferedChainId: String
+  ): String
+  editIconLogo(id: String, file: Upload): PaymentInterface
+  onlinePayment(
+    currencyId: String
+    paymentInterfaceId: String
+    amount: Float
+  ): String
+  checkOnlinePayment(paymentId: String, paymentInterfaceId: String): String
+  createInvoice(
+    currencyId: String!
+    paymentInterfaceId: String!
+    amount: Float!
+    userId: String
+    documentId: String
+  ): String
+  adminDeposit(
+    currencyId: String!
+    paymentInterfaceId: String!
+    address: String!
+    amount: Float!
+    documentId: String
+  ): String
+  approveAdminDeposit(
+    txid: String!
+    amount: Float!
+    paymentInterfaceId: String!
+    currencyId: String!
+    address: String!
+  ): String
+  createRecipient(
+    paymentInterfaceId: String!
+    currencyId: String!
+    data: String!
+    description: String!
+  ): Recipient
+  deleteRecipient(id: String!): String
+  syncManualRecipients(currencyId: String, userId: String): Response
+  createManualRecipient(currencyId: String!, userId: String!): Recipient
+  createCountry(id: String!, name: String!, enabled: Boolean!): Country
+  updateCountry(id: String, name: String, enabled: Boolean): Country
+  createStake(currencyId: String!, amount: Float!): String
+  cancelStake(currencyId: String!): String
+  currencyAllUnstaking(currencyId: String!): String
+  signWithGoogle(token: String!, code: String, referralId: String): User
+  createMarket(
+    enabled: Boolean
+    quote_currency_id: String
+    base_currency_id: String
+    minBaseCurrencyAmount: Float
+    minQuoteCurrencyAmount: Float
+    buy_commission: Float
+    buy_min_commission: Float
+    buy_max_commission: Float
+    sell_commission: Float
+    sell_min_commission: Float
+    sell_max_commission: Float
+    commission_currency: String
+    enable_custodial_exchange: Boolean
+    enable_non_custodial_exchange: Boolean
+    enable_trading: Boolean
+    trading_amount_precision: Int
+    trading_price_precision: Int
+    trading_min_price: Float
+    trading_max_price: Float
+    trading_min_amount: Float
+    trading_position: Int
+    trading_maker_fee: Float
+    trading_taker_fee: Float
+    trading_bot_enabled: Boolean
+    trading_bot_settings: String
+    base_currency_swap_in: Boolean
+    quote_currency_swap_in: Boolean
+    base_currency_swap_out: Boolean
+    quote_currency_swap_out: Boolean
+    swapQuoteToBasePricePrecision: Int
+    swapBaseToQuotePricePrecision: Int
+    marketOwnerId: String
+    buyLimitEnabled: Boolean
+    sellLimitEnabled: Boolean
+    buyMarketEnabled: Boolean
+    sellMarketEnabled: Boolean
+    buyTradeCancellable: Boolean
+    sellTradeCancellable: Boolean
+  ): Market
+  updateMarket(
+    id: String
+    enabled: Boolean
+    minBaseCurrencyAmount: Float
+    minQuoteCurrencyAmount: Float
+    buy_commission: Float
+    buy_min_commission: Float
+    buy_max_commission: Float
+    sell_commission: Float
+    sell_min_commission: Float
+    sell_max_commission: Float
+    commission_currency: String
+    enable_custodial_exchange: Boolean
+    enable_non_custodial_exchange: Boolean
+    enable_trading: Boolean
+    trading_amount_precision: Int
+    trading_price_precision: Int
+    trading_min_price: Float
+    trading_max_price: Float
+    trading_min_amount: Float
+    trading_position: Int
+    trading_maker_fee: Float
+    trading_taker_fee: Float
+    trading_bot_enabled: Boolean
+    trading_bot_settings: String
+    base_currency_swap_in: Boolean
+    quote_currency_swap_in: Boolean
+    base_currency_swap_out: Boolean
+    quote_currency_swap_out: Boolean
+    swapQuoteToBasePricePrecision: Int
+    swapBaseToQuotePricePrecision: Int
+    marketOwnerId: String
+    buyLimitEnabled: Boolean
+    sellLimitEnabled: Boolean
+    buyMarketEnabled: Boolean
+    sellMarketEnabled: Boolean
+    buyTradeCancellable: Boolean
+    sellTradeCancellable: Boolean
+  ): Market
+  createLockedTransfer(
+    result_user_id: String!
+    currency_id: String!
+    amount: Float!
+  ): Operation
+  cancelLockedTransfer(id: String!): Operation
+  unlockTransfer(id: String!): Operation
+  userExchange(
+    fromCurrencyId: String
+    toCurrencyId: String
+    amount: Float
+  ): String
+  moveToAdvancedTrading(
+    currencyId: String!
+    amount: Float!
+    userId: String
+  ): String
+  moveFromAdvancedTrading(
+    currencyId: String!
+    amount: Float!
+    userId: String
+  ): String
+  adminWithdraw(
+    recipientId: String!
+    amount: Float!
+    includeFees: Boolean
+  ): Boolean
+
+  # This mutation rejected Payout_Errored operation "custodial_withdraw"
+  rejectWithdraw(
+    # Operation ID to reject
+    id: String!
+    adminNote: String
+  ): String
+
+  # This mutation creates new operation "custodial_withdraw"
+  userWithdraw(
+    # recipient ID (withdrawal will be created for payment interface and currency from recipient)
+    #
+    # Important! recipient.userId must be equal initiator's ID
+    recipientId: String
+
+    # withdrawal amount
+    amount: Float
+
+    # if this parameter is empty and user's2fa turn on - receive error "2FA code is wrong or disabled"
+    code: String
+
+    # false - if user wants to withdraw (amount - commission) and receive (amount)
+    #
+    # true - if user wants to withdraw (amount) and receive (amount - commission)
+    includeFees: Boolean
+  ): String
+  userSwapOut(currencyId: String!, recipientId: String!, amount: Float): String
+  initNonCustodialExchange(
+    inCurrencyId: String!
+    inPaymentInterfaceId: String!
+    recipientId: String!
+    amount: Float
+  ): InitialDepositData
+  initNonCustodialExternalExchange(
+    inCurrencyId: String!
+    inPaymentInterfaceId: String!
+    provider: String!
+    recipientId: String!
+    amount: Float!
+    slippage: Float
+  ): String
+  operationReset(id: String): String
+  adminProcess(id: String): String
+  approveWithdrawal(id: String!): String
+  userDirectDeposit(
+    currencyPaymentInterfaceId: String!
+    type: OperationType
+    address: String!
+    amount: Float!
+    recipientId: String
+  ): String
+  editCurrencyIconLogo(id: String, file: Upload): Currency
+  setIcoAdditionalInfo(id: String, data: String): String
+  createCurrency(
+    # currency table part
+    id: String
+    name: String
+    icon_url: String
+    precision: Int
+    userBalanceEnable: Boolean
+    enabled: Boolean
+    position: Int
+    lightBgColor1: String
+    lightBgColor2: String
+    darkBgColor1: String
+    darkBgColor2: String
+    lightTextColor: String
+    darkTextColor: String
+
+    # currencyPaymentInterface part
+    currencyPaymentInterfaces: [CurrencyPaymentInterfaceInput]
+    trading_commission_enabled: Boolean
+    hide: Boolean
+    staking_enabled: Boolean
+    staking_period: String
+    staking_apr: Float
+    min_staking_amount: Float
+    instant_unstaking: Boolean
+  ): Currency
+  updateCurrency(
+    # currency table part
+    id: String
+    name: String
+    icon_url: String
+    precision: Int
+    userBalanceEnable: Boolean
+    enabled: Boolean
+    position: Int
+    lightBgColor1: String
+    lightBgColor2: String
+    darkBgColor1: String
+    darkBgColor2: String
+    lightTextColor: String
+    darkTextColor: String
+
+    # currencyPaymentInterface part
+    currencyPaymentInterfaces: [CurrencyPaymentInterfaceInput]
+    trading_commission_enabled: Boolean
+    hide: Boolean
+    staking_enabled: Boolean
+    staking_period: String
+    staking_apr: Float
+    min_staking_amount: Float
+    instant_unstaking: Boolean
+  ): Currency
+  setRate(
+    base_currency_id: String
+    quote_currency_id: String
+    rate: Float
+  ): String
+  updateSoftBan(status: Boolean!): Boolean
+  setSoftBan(userId: String!, status: Boolean!): Boolean
+  signup(
+    email: String!
+    password: String!
+    referralId: String
+    locale: String
+    token: String
+  ): String
+  askChangePassword(email: String!): String
+  recoveryPassword(token: String!, newPassword: String!): String
+  verifyEmail(token: String!, isFront: Boolean): String
+  resendEmailConfirm(email: String!): String
+  changePassword(old_password: String!, new_password: String!): String
+  kycUpdate(id: String!, type: String!): String
+  updateUser(
+    id: String!
+    role: String
+    state: String
+    email_verified: Boolean
+    profile_verified: Boolean
+    phone_verified: Boolean
+    enabled2fa: Boolean
+  ): String
+  addPhone(phone: String!): String
+  resendPhoneConfirm(phone: String!): String
+  setFavoriteCurrency(currencyId: String!): Boolean
+  setFavoriteMarket(marketId: String!): Boolean
+  verifyPhone(phone: String!, code: String!): String
+  addProfile(
+    first_name: String!
+    last_name: String!
+    birth: String!
+    address: String!
+    city: String!
+    country: String!
+    postcode: String!
+  ): String
+  addDocument(
+    doc_type: String!
+    doc_number: String!
+    file: Upload!
+    doc_expire: String!
+  ): String
+  updateRateSourceConfig(
+    market: String!
+    service_prefix: String!
+    secondary_service_prefix: String
+    intermediary_currency: String
+    enabled: Boolean
+  ): String
+  generateWallet(
+    currencyId: String!
+    paymentInterfaceId: String!
+    isDonation: Boolean!
+    userId: String
+  ): Wallet
+  generateSwapInWallet(
+    inputCurrencyId: String!
+    paymentInterfaceId: String!
+    resultCurrencyId: String!
+  ): Wallet
+  syncWallets(userId: String, currencyId: String): String
+  connectWallet(chainId: Int, address: String): Wallet
+  connectWallet_v1(paymentInterfaceId: String, address: String!): Wallet
+  getWalletConnectURI(currencyPaymentInterfaceId: String): String
+  getWalletConnectURI_v1: String
+  registerExternalWallet(
+    address: String!
+    paymentInterfaceId: String!
+    signedMessage: String!
+  ): Wallet
+  createBlockchainWallet(id: String): Blockchain
+  updateBlockchain(
+    id: String!
+    enabled: Boolean
+    connectedBlockchainId: String
+  ): Blockchain
+  resetBlock(id: String, block_number: Int): Int
+  cancelAllOrders(market: String!): String
+  cancelOrder(id: String!, marketId: String): String
+  cancelTrade(id: String!, marketId: String!): String
+  openOrder(
+    market: String!
+    type: String!
+    side: String!
+    amount: Float!
+    price: Float
+  ): Order
+}
+
+type Subscription {
+  marketRate(market: String!): MarketRate
+  userBalanceUpdated(token: String!): Balance
+  operationsUpdated(token: String!): Operation
+  userUpdated(token: String!): String
+  adminAllRates(token: String): [AdminRate]
+  walletToConnect(token: String): WalletConnect
+  walletToConnect_v1(currencyId: String!, token: String!): WalletConnect
+  userAllBalance(token: String!): [Balance]
+  privateTrades(market: String, token: String!): PrivateTrade
+  privateOrders(market: String, token: String!): Order
+  publicFullOrderBook(market: String): OrderBook
+  publicDiffOrderBook(market: String): OrderBookDiff
+  publicTrades(market: String): PublicTrade
+  marketDynamics(market: String): MarketDynamics
+  allMarketsDynamics: MarketDynamics
+  marketTicker(market: String!, interval: String!): KLine
+  monitoring(token: String): StatsTick
+}
+
+input RefGroupPercentageInput {
+  level: Int
+  percent: Float
+}
+
+input RefGroupOTPaymentInput {
+  operation: String
+  currency_id: String
+  payment_interface_id: String
+  min_base: Float
+  percent: Float
+  max_reward: Float
+}
+
+type RefCode {
+  id: String
+  code: String
+  refGroupId: String
+  refOTPGroupId: String
+  user: User
+  referrals: [UserReferral]
+}
+
+type RefGroupPercentage {
+  id: String
+  group_id: String
+  level: Int
+  percent: Float
+}
+
+type RefGroupOTPayment {
+  id: String
+  operation: String
+  group_id: String
+  currency_id: String
+  payment_interface_id: String
+  min_base: Float
+  percent: Float
+  max_reward: Float
+}
+
+type RefGroup {
+  id: String
+  name: String
+  description: String
+  levels: [RefGroupPercentage]
+}
+
+type RefOTPGroup {
+  id: String
+  name: String
+  description: String
+  oneTimePayments: [RefGroupOTPayment]
+}
+
+type UserReferral {
+  level: Int
+  userId: String
+  user: User
+}
+
+type referralByLevel {
+  level: Int
+  count: Int
+}
+
+type RefUser {
+  id: String
+  refCode: String
+  email: String
+  referralId: String
+  refGroup: RefGroup
+  refOTPGroup: RefOTPGroup
+  parent: RefUser
+  referralsByLevel: [referralByLevel]
+  userReferrals: [UserReferral]
+}
+
+# This type describes ApiKey
+# params token is null for Token List
+# params expires - UNIX time (in seconds)
+type ApiKey {
+  id: String
+  token: String
+  description: String
+  scope: String
+  expires: Int
+}
+
+type LedgerRecordPaginated {
+  result: [LedgerRecord]
+  total: Int
+  page: Int
+  limit: Int
+}
+
+# This type describes a DonateProject entity.
+type DonateProject {
+  id: String
+  name: String
+  description: String
+  iconUrl: String
+  picUrl: String
+  projectUrl: String
+  project_url: String
+  max_amount: Float
+  currencyId: String
+  coordinatorUserId: String
+  coordinator: User
+  enabled: Boolean
+  selected: Boolean
+  featured: Boolean
+  categId: String
+  category: DonateProjectCateg
+  createdAt: String
+  updatedAt: String
+  bonuses: [DonateBonusToken]
+  balance: Float
+  history(limit: Int, page: Int): LedgerRecordPaginated
+}
+
+# Note: each donation project can be in a single Category only.
+type DonateProjectCateg {
+  id: String
+  name: String
+  description: String
+  icon_url: String
+  pic_url: String
+  enabled: Boolean
+  projects: [DonateProject]
+  createdAt: String
+  updatedAt: String
+}
+
+type DonateBonusToken {
+  currencyId: String
+  currency: Currency
+  coef: Float
+}
+
+input InputDonateProject {
+  id: String
+  name: String
+  description: String
+  iconUrl: String
+  max_amount: Float
+  currencyId: String
+  coordinatorUserId: String
+  enabled: Boolean
+  selected: Boolean
+  featured: Boolean
+  categId: String
+  createdAt: String
+  updatedAt: String
+}
+
+input InputBonusDonate {
+  token: String
+  coef: Float
+}
+
+type DonateBonus {
+  currency: Currency
+  amount: Float
+}
+
+# This type describes a Payment interface entity.
+type PaymentInterface {
+  id: String
+
+  # name: String
+  title: String
+  subtitle: String
+  multiCurrency: Boolean
+  invoiceBased: Boolean
+  logoUrl: String
+  isCollectabled: Boolean
+  description: String
+  blockchain: Blockchain
+  recipientSchema: String
+  createdAt: String
+  updatedAt: String
+  currencyPaymentInterfaces: [CurrencyPaymentInterface]
+}
+
+type AdminPaymentInterface {
+  id: String
+  subtitle: String
+  title: String
+  logoUrl: String
+  description: String
+  invoiceBased: Boolean
+  createdAt: String
+  updatedAt: String
+}
+
+type CurrencyPaymentInterface {
+  id: String
+  currencyId: String
+  currency: AdminCurrency
+  paymentInterfaceId: String
+  paymentInterface: PaymentInterface
+  balance: Float
+  description: String
+  type: String
+  contractAddress: String
+  gasLimit: Int
+  subunits: Int
+  minDepositAmount: Float
+  depositFee: Float
+  minDepositFee: Float
+  maxDepositFee: Float
+  userDepositEnable: Boolean
+  minDirectDepositAmount: Float
+  directDepositFee: Float
+  minDirectDepositFee: Float
+  maxDirectDepositFee: Float
+  userDirectDepositEnabled: Boolean
+  minWithdrawAmount: Float
+  maxWithdrawAmount: Float
+  maxWithdrawAmount24h: Float
+  maxWithdrawAmount72h: Float
+  withdrawFee: Float
+  minWithdrawFee: Float
+  maxWithdrawFee: Float
+  minCollectionAmount: Float
+  userWithdrawEnable: Boolean
+  isDonationEnabled: Boolean
+  enable: Boolean
+  createdAt: String
+  updatedAt: String
+  assets: Float
+  manualAssets: Float
+  actualBalance: Float
+}
+
+type Recipient {
+  id: String
+  data: String
+  paymentInterfaceId: String
+  currencyId: String
+  description: String
+}
+
+type Invoice {
+  id: String
+  paymentInterfaceId: String
+  userId: String
+  amount: Float
+  createdAt: Date
+}
+
+type InvoiceDataSchema {
+  paymentInterfaceId: String
+  dataSchema: String
+}
+
+type InitialDepositData {
+  address: String
+  encodedAddress: String
+  redirectUrl: String
+  depositCommission: Float
+  minDepositCommission: Float
+  maxDepositCommission: Float
+  minDepositAmount: Float
+  maxDepositAmount: Float
+}
+
+type WithdrawPaymentInterface {
+  paymentInterfaceId: String
+  paymentInterface: PaymentInterface
+  currency: Currency
+  currencyId: String
+  contractAddress: String
+  type: String
+  minWithdrawAmount: Float
+  maxWithdrawAmount: Float
+  maxWithdrawAmount24h: Float
+  maxWithdrawAmount72h: Float
+  withdrawAmount24h: Float
+  withdrawAmount72h: Float
+  withdrawFee: Float
+  minWithdrawFee: Float
+  maxWithdrawFee: Float
+  recipientSchema: String
+  recipients: [Recipient]
+}
+
+type InCurrencyPaymentInterface {
+  id: String
+  currency: Currency
+  tradeinCurrency: String
+  paymentInterfaceId: String
+  paymentInterface: PaymentInterface
+  description: String
+
+  # TODO: ASK TO SERHII
+  deposit: InitialDepositData
+}
+
+input CurrencyPaymentInterfaceInput {
+  paymentInterfaceId: String!
+  description: String
+  type: String!
+  contractAddress: String
+  gasLimit: Int
+  subunits: Int
+  minDepositAmount: Float
+  depositFee: Float
+  minDepositFee: Float
+  maxDepositFee: Float
+  userDepositEnable: Boolean
+  minDirectDepositAmount: Float
+  directDepositFee: Float
+  minDirectDepositFee: Float
+  maxDirectDepositFee: Float
+  userDirectDepositEnabled: Boolean
+  minWithdrawAmount: Float
+  maxWithdrawAmount: Float
+  maxWithdrawAmount24h: Float
+  maxWithdrawAmount72h: Float
+  withdrawFee: Float
+  minWithdrawFee: Float
+  maxWithdrawFee: Float
+  minCollectionAmount: Float
+  userWithdrawEnable: Boolean
+  isDonationEnabled: Boolean
+  enable: Boolean
+}
+
+type Response {
+  success: Boolean
+  errorMessage: String
+}
+
+# This type describes a Country entity.
+type Country {
+  id: String
+  name: String
+  enabled: Boolean
+}
+
+#
+type StakingCurrency {
+  id: String
+  staking_enabled: Boolean
+  staking_period: String
+  staking_apr: Float
+  min_staking_amount: Float
+  last_staking_calc: Float
+  next_staking_calc: Float
+  next_reward_amount: Float
+  locked_balance: Float
+  active_balance: Float
+  isUnstakingProcess: Boolean
+  instant_unstaking: Boolean
+}
+
+type StakingRewardsHistoryPaginated {
+  result: [StakingReward]
+  total: Int
+  limit: Int
+  page: Int
+}
+
+type StakingReward {
+  staking_calc: Float
+  amount: Float
+  currencyId: String
+  currency: StakingCurrency
+}
+
+type MarketDynamics {
+  marketId: String
+  startPrice: Float
+  amount24h: Float
+  lastPrice: Float
+  lowPrice: Float
+  highPrice: Float
+  change24: Float
+}
+
+type MarketLastPrice {
+  marketId: String
+  lastPrice: Float
+}
+
+# This type describes a Markets entity.
+type Market {
+  id: String
+  rate: Float
+  enabled: Boolean
+  quote_currency_id: String
+  quote_currency: Currency
+  base_currency_id: String
+  base_currency: Currency
+  minBaseCurrencyAmount: Float
+  minQuoteCurrencyAmount: Float
+  rate_sources: [RateSourceConfig]
+  rate_sources_registered: [RateSourceConfig]
+  change24: Float
+  buy_commission: Float
+  buy_min_commission: Float
+  buy_max_commission: Float
+  sell_commission: Float
+  sell_min_commission: Float
+  sell_max_commission: Float
+  commission_currency: String
+  enable_custodial_exchange: Boolean
+  enable_non_custodial_exchange: Boolean
+  enable_trading: Boolean
+  trading_amount_precision: Int
+  trading_price_precision: Int
+  trading_min_price: Float
+  trading_max_price: Float
+  trading_min_amount: Float
+  trading_position: Int
+  trading_maker_fee: Float
+  trading_taker_fee: Float
+  trading_bot_enabled: Boolean
+  trading_bot_settings: String
+  base_currency_swap_in: Boolean
+  quote_currency_swap_in: Boolean
+  base_currency_swap_out: Boolean
+  quote_currency_swap_out: Boolean
+  marketDynamics: MarketDynamics
+  swapQuoteToBasePricePrecision: Int
+  swapBaseToQuotePricePrecision: Int
+  marketOwnerId: String
+  buyLimitEnabled: Boolean
+  sellLimitEnabled: Boolean
+  buyMarketEnabled: Boolean
+  sellMarketEnabled: Boolean
+  buyTradeCancellable: Boolean
+  sellTradeCancellable: Boolean
+  isFavorite: Boolean
+}
+
+type MarketRate {
+  market: String
+  spread: Float
+  rate: Float
+  ts: String
+}
+
+# This type describes a LedgerRecord entity.
+type LedgerRecord {
+  id: String
+  operationId: String
+  operation: Operation
+  operationGroupId: String
+  accountNumber: String
+  currencyId: String
+  currency: Currency
+  counterparty: String
+  debit: Float
+  credit: Float
+  status: String
+  description: String
+  createdAt: String
+  updatedAt: String
+  project: DonateProject
+}
+
+enum OperationType {
+  DIRECT_DEPOSIT
+  ON_CHAIN_SWAP
+}
+
+type Balance {
+  currencyId: String
+  balance: Float
+  advancedTradingLockedBalance: Float
+  advancedTradingBalance: Float
+  lockedBalance: Float
+  withdrawLockedBalance: Float
+  stakingLockedBalance: Float
+  activeStakingBalance: Float
+  ts: String
+}
+
+type OperationStatus {
+  error: [String]
+  waiting: [String]
+  final: [String]
+}
+
+type History {
+  type: String
+  secondaryCurrencyId: String
+  amount: Float
+  status: String
+  createdAt: String
+  updatedAt: String
+}
+
+type WalletHistory {
+  history: [History]
+  total: Int
+  page: Int
+  limit: Int
+}
+
+type ICOHistory {
+  type: String
+  ICOCurrencyId: String
+  ICOCurrency: Currency
+  currencyId: String
+  currency: Currency
+  amount: Float
+  resultAmount: Float
+  createdAt: String
+  updatedAt: String
+}
+
+type ICOHistoryPaginated {
+  history: [ICOHistory]
+  total: Int
+  page: Int
+  limit: Int
+}
+
+type ExchangeHistory {
+  market: String
+  side: String
+  currencyFromId: String
+  currencyFrom: Currency
+  currencyToId: String
+  currencyTo: Currency
+  price: Float
+  amount: Float
+  total: Float
+  createdAt: String
+  updatedAt: String
+  status: String
+}
+
+type TransferHistory {
+  currencyId: String
+  currency: Currency
+  amount: Float
+  type: String
+  createdAt: String
+  updatedAt: String
+  status: String
+}
+
+# This type describes a Operation entity.
+type Operation {
+  id: String
+  initiator_type: String
+  initiator_txid: String
+  initiator_payment_interface_id: String
+  initiator_payment_interface: PaymentInterface
+  initiator_explorer_transaction: String
+  initiator_currency_id: String
+  initiator_currency: Currency
+  initiator_amount: String
+  initiator_wallet_id: String
+  parent_id: String
+  result_currency_id: String
+  result_currency: Currency
+  result_payment_interface_id: String
+  result_payment_interface: PaymentInterface
+  result_explorer_transaction: String
+  result_recipient_id: String
+  result_recipient_address: String
+  result_amount: String
+  result_txid: String
+  user_id: String
+  user: User
+  result_user_id: String
+  result_user: User
+  outstanding_payment_interface_id: String
+  outstanding_payment_interface: PaymentInterface
+  outstanding_explorer_transaction: String
+  outstanding_txid: String
+  auxiliary_payment_interface_id: String
+  auxiliary_payment_interface: PaymentInterface
+  auxiliary_explorer_transaction: String
+  auxiliary_txid: String
+  auxiliary_gas_price: String
+  description: String
+  status: String
+  createdAt: String
+  updatedAt: String
+  ledgerRecords: [LedgerRecord]
+  children: [Operation]
+}
+
+type PaginatedOperations {
+  page: Int
+  limit: Int
+  total: Int
+  result: [Operation]
+}
+
+type OperationFilters {
+  types: [String]
+  statuses: OperationStatus
+}
+
+type UserOperationsPaginated {
+  result: [UserOperation]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type AdminUserLedgerRecordsPaginated {
+  result: [LedgerRecord]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type UserOperation {
+  id: String
+  user_id: String
+  initiator_type: String
+  initiator_txid: String
+  initiator_payment_interface_id: String
+  initiator_payment_interface: PaymentInterface
+  initiator_explorer_transaction: String
+  initiator_currency_id: String
+  initiator_currency: Currency
+  initiator_amount: String
+  initiator_fee: Float
+  result_currency_id: String
+  result_currency: Currency
+  result_txid: String
+  result_payment_interface_id: String
+  result_explorer_transaction: String
+  result_amount: String
+  status: String
+  createdAt: String
+  updatedAt: String
+  ledgerRecords: [LedgerRecord]
+}
+
+type AdminUserCurrencyOperations {
+  result: [AdminUserOperation]
+  limit: Int
+  page: Int
+  total: Int
+}
+
+type AdminUserOperation {
+  id: String
+  type: String
+  debit: Float
+  credit: Float
+  status: String
+  createdAt: String
+}
+
+type LiabilitiesAssests {
+  type: String
+  currency: String
+  value: Float
+  rate: Float
+  ratedValue: Float
+}
+
+# This type describes a Currency entity.
+type ConvertPaymentInterface {
+  id: String
+  name: String
+  payoutFormSchema: String
+}
+
+type IcoLevel {
+  id: String
+  level: Float
+  price: Float
+  left: Float
+}
+
+input IcoLevelInput {
+  id: String
+  level: Float
+  price: Float
+}
+
+type AdditionalIcoCurrency {
+  data: String
+}
+
+# -- only for user --
+type Currency {
+  id: String
+  name: String
+  icon_url: String
+  position: Int
+  lightBgColor1: String
+  lightBgColor2: String
+  darkBgColor1: String
+  darkBgColor2: String
+  lightTextColor: String
+  darkTextColor: String
+  precision: Int
+  enabled: Boolean
+  userBalanceEnable: Boolean
+  balance: Float
+  lockedBalance: Float
+  advancedTradingLockedBalance: Float
+  advancedTradingBalance: Float
+  withdrawLockedBalance: Float
+  stakingLockedBalance: Float
+  activeStakingBalance: Float
+  trading_commission_enabled: Boolean
+  createdAt: String
+  updatedAt: String
+  depositWallets: [Wallet]
+  donationWallets: [Wallet]
+  withdrawPaymentInterfaces: [WithdrawPaymentInterface]
+  hide: Boolean
+  staking_enabled: Boolean
+  staking_period: String
+  staking_apr: Float
+  min_staking_amount: Float
+  last_staking_calc: Float
+  next_staking_calc: Float
+  isUnstakingProcess: Boolean
+  instant_unstaking: Boolean
+  currencyPaymentInterfaces(
+    userDonationEnabled: Boolean
+    userDepositEnabled: Boolean
+    userWithdrawEnabled: Boolean
+  ): [CurrencyPaymentInterface]
+  markets(
+    nonCustodialExchangeEnabled: Boolean
+    custodialExchangeEnabled: Boolean
+    tradingEnabled: Boolean
+  ): [Market]
+  history(page: Int, limit: Int, type: String): UserOperationsPaginated
+  isFavorite: Boolean
+}
+
+type AdminCurrency {
+  id: String
+  name: String
+  icon_url: String
+  precision: Int
+  position: Int
+  lightBgColor1: String
+  lightBgColor2: String
+  darkBgColor1: String
+  darkBgColor2: String
+  lightTextColor: String
+  darkTextColor: String
+  userBalanceEnable: Boolean
+  enabled: Boolean
+  currencyPaymentInterfaces: [CurrencyPaymentInterface]
+  createdAt: String
+  updatedAt: String
+  trading_commission_enabled: Boolean
+  hide: Boolean
+  primaryLiabilities: Float
+  tradingLiabilities: Float
+  lockedLiabilities: Float
+  assets: Float
+  manualAssets: Float
+  staking_enabled: Boolean
+  staking_period: String
+  staking_apr: Float
+  min_staking_amount: Float
+  last_staking_calc: Float
+  next_staking_calc: Float
+  instant_unstaking: Boolean
+}
+
+type AdminUserCurrency {
+  id: String
+  userId: String
+  name: String
+  icon_url: String
+  precision: Int
+  position: Int
+  userBalanceEnable: Boolean
+  balance: Float
+  advancedTradingLockedBalance: Float
+  advancedTradingBalance: Float
+  lockedBalance: Float
+  withdrawLockedBalance: Float
+  enabled: Boolean
+  depositWallets: [Wallet]
+  donationWallets: [Wallet]
+  hide: Boolean
+  history(limit: Int, page: Int): [AdminUserOperation]
+
+  # currencyPaymentInterfaces: [AdminUserCurrencyPaymentInterface]
+  trading_commission_enabled: Boolean
+}
+
+type ConvertMarket {
+  id: String
+  spread: Float
+  rate: Float
+  is_reverse: Boolean
+  to_currency_id: String
+  to_currency: Currency
+  from_currency_id: String
+  from_currency: Currency
+}
+
+type ManualRate {
+  id: String
+  base_currency_id: String
+  quote_currency_id: String
+  rate: Float
+  createdAt: String
+  updatedAt: String
+}
+
+# This type describes user phone lists
+type UserPhone {
+  id: String
+  phone: String
+  verified: Boolean
+  createdAt: String
+  updatedAt: String
+}
+
+type UserLabel {
+  id: String
+  key: String
+  value: String
+  scope: String
+  description: String
+  createdAt: String
+  updatedAt: String
+}
+
+# This type describes a user profile.
+type UserProfile {
+  id: String
+  first_name: String
+  last_name: String
+  birth: String
+  address: String
+  city: String
+  country: String
+  postcode: String
+  state: String
+  createdAt: String
+  updatedAt: String
+}
+
+# This type describes a user entity.
+type User {
+  id: String
+  email: String
+  role: String
+  token: String
+  barong_session: String
+  barong_session_expires: Float
+  state: String
+  referralId: String
+  referralGroupId: String
+  email_verified: Boolean
+  profile_verified: Boolean
+  phone_verified: Boolean
+  profiles: [UserProfile]
+  phones: [UserPhone]
+  documents: [UserDocument]
+  labels: [UserLabel]
+  locale: String
+  sessionsCount: Int
+  history(page: Int, limit: Int, type: String): UserOperationsPaginated
+  currencies: [Currency]
+  googleIdentity: Boolean
+  enabled2fa: Boolean
+  createdAt: String
+  updatedAt: String
+  permissions: [String]
+  softban: Boolean
+}
+
+# This type describes a user's list with pagination.
+type PaginatedUsers {
+  page: Int
+  limit: Int
+  total: Int
+  result: [User]
+}
+
+type UserDocument {
+  doc_type: String
+  doc_number: String
+  doc_expire: String
+  url: String
+}
+
+type TrackingDetailsResult {
+  result: [TrackingDetails]
+  limit: Int
+  page: Int
+  total: Int
+}
+
+type TrackingDetails {
+  # id: String
+  # userId: String
+  createdAt: String
+  updatedAT: String
+  userAgent: String
+  userIP: String
+  userPlatform: String
+}
+
+# This type describes a rateSourceConfig entity.
+type RateSourceConfig {
+  id: String
+  market: String
+  service_prefix: String
+  secondary_service_prefix: String
+  intermediary_currency: String
+  enabled: Boolean
+  online: Boolean
+}
+
+type AdminRateSource {
+  market: String
+  service_prefix: String
+  rate: Float
+  ts: String
+}
+
+type AdminRate {
+  market: String
+  rate: Float
+  ts: String
+  sources: [AdminRateSource]
+}
+
+type Historical {
+  ts: String
+  amount: Float
+}
+
+type ChangeRate {
+  range: String
+  startRate: Float
+  endRate: Float
+  percent: String
+  diff: Float
+}
+
+# This type describes a Wallet entity.
+type Wallet {
+  id: String
+  paymentInterface: PaymentInterface
+  currency: Currency
+  type: String
+  deposit: InitialDepositData
+  address: String
+  isExternal: Boolean
+  isVerified: Boolean
+}
+
+type Chain {
+  id: String
+  currencyPaymentInterfaces: [CurrencyPaymentInterface]
+  title: String
+  subtitle: String
+}
+
+type NonCustodialWallet {
+  id: String
+  paymentInterfaceId: String
+  currencyId: String
+  address: String
+  recipient: Recipient
+  recipientId: String
+  paymentInterface: PaymentInterface
+}
+
+type WalletConnect {
+  address: String
+  paymentInterfaceId: String
+  paymentInterface: PaymentInterface
+  action: String
+  chainId: Int
+  currencyId: String
+}
+
+type AdvancedTradeBalance {
+  available: Float
+  locked: Float
+}
+
+type BalanceByLevels {
+  level: Float
+  price: Float
+  balance: Float
+}
+
+type Portfolio {
+  balance: Float
+  currency: Currency
+  currencyId: String
+  userId: String
+  balanceByLevels: [BalanceByLevels]
+}
+
+type DonateWallet {
+  id: String
+  paymentInterface: PaymentInterface
+  currency: Currency
+  deposit: InitialDepositData
+  type: String
+  rate: Float
+  tradeinCurrency: String
+}
+
+# This type describes a Blockchain entity.
+type Blockchain {
+  id: String
+  name: String
+  description: String
+  explorer_address: String
+  explorer_transaction: String
+  height: Int
+  latest_height: Int
+  minConfirmations: Int
+  enabled: Boolean
+  wallet: String
+  chainId: String
+  createdAt: String
+  updatedAt: String
+  connectedBlockchainId: String
+  connectedBlockchain: Blockchain
+  currencyPaymentInterfaces: [CurrencyPaymentInterface]
+}
+
+# This type describes an Order entity.
+type Order {
+  id: String
+  market: String
+  operation: Operation
+  operationId: String
+  Market: Market
+  side: String
+  type: String
+  user: User
+  amount: Float
+  price: Float
+  volume: Float
+  executedAmount: Float
+  executedVolume: Float
+  status: String
+  trades: [Trade]
+  createdAt: String
+  updatedAt: String
+}
+
+type KLine {
+  open: Float
+  low: Float
+  high: Float
+  close: Float
+  volume: Float
+  timestamp: Int
+}
+
+type OrderBookRecord {
+  price: Float
+  amount: Float
+  cumulativeAmount: Float
+}
+
+type OrderBookRecordDiff {
+  price: Float
+  amountDiff: Float
+}
+
+type OrderBook {
+  buy: [OrderBookRecord]
+  sell: [OrderBookRecord]
+}
+
+type OrderBookDiff {
+  buy: [OrderBookRecordDiff]
+  sell: [OrderBookRecordDiff]
+}
+
+type PublicTrade {
+  id: String
+  price: Float
+  amount: Float
+  makerOrderSide: String
+  createdAt: String
+}
+
+type UserTrade {
+  id: String
+  market: String
+  Market: Market
+  buyUserId: String
+  sellUserId: String
+  buyOrderId: String
+  sellOrderId: String
+  amount: Float
+  price: Float
+  volume: Float
+  makerOrderSide: String
+  maker_fee: Float
+  taker_fee: Float
+  status: String
+  createdAt: String
+  updatedAt: String
+}
+
+type Trade {
+  id: String
+  market: String
+  Market: Market
+  buyUserId: String
+  buyUser: User
+  sellUserId: String
+  sellUser: User
+  buyOrderId: String
+  buyOrder: Order
+  sellOrderId: String
+  sellOrder: Order
+  amount: Float
+  price: Float
+  volume: Float
+  makerOrderSide: String
+  maker_fee: Float
+  taker_fee: Float
+  status: String
+  createdAt: String
+  updatedAt: String
+}
+
+type UserTradesPaginated {
+  result: [UserTrade]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type PrivateTrade {
+  id: String
+  amount: Float
+  price: Float
+  side: String
+  role: String
+  createdAt: String
+}
+
+type OrdersPaginated {
+  result: [Order]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type AdminTradesPaginated {
+  result: [Trade]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type PublicTradesPaginated {
+  result: [PublicTrade]
+  page: Int
+  limit: Int
+  total: Int
+}
+
+type MessageLogPaginated {
+  result: [MessageLog]
+  limit: Int
+  page: Int
+}
+
+type MessageLog {
+  time: String
+  message: String
+  id: String
+  userId: String
+}
+
+# This type describes a NodeMonitoringTick entity.
+type NodeMonitoringTick {
+  id: String
+  cpu_load1: Float
+
+  # cpu_load5: Float
+  # cpu_load15: Float
+  mem_free: Int
+  mem_total: Int
+  mem_percent: Float
+  mem_os_percent: Float
+  version: String
+  uptime: Float
+  online: Boolean
+  moleculer_request_timeout_total: Int
+  moleculer_request_total: Int
+  moleculer_request_active: Int
+  moleculer_request_error_total: Int
+  moleculer_event_received_total: Int
+  moleculer_event_received_active: Int
+  moleculer_event_received_error_total: Int
+  actions: [String]
+}
+
+type UsersTick {
+  total_users: Int
+  current_sessions: Int
+  operations_total: Int
+  operations_24h: Int
+}
+
+type BalanceStats {
+  balancesReady: Boolean
+  usersLoaded: Int
+}
+
+type StatsTick {
+  nodes: [NodeMonitoringTick]
+  users: UsersTick
+  trading: TradingStats
+  balances: BalanceStats
+}
+
+type TradingStats {
+  queue_length: Int
+}
+
+# Enumerations for user types
+enum UserType {
+  ADMIN
+  USER
+}
+
+enum UserState {
+  pending
+  active
+  banned
+}

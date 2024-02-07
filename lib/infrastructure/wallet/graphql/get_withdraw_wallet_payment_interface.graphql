@@ -1,0 +1,31 @@
+query GetWithdrawWalletPaymentInterface($id: String!) {
+  currency(id: $id) {
+    withdrawPaymentInterfaces {
+      type
+      paymentInterface {
+        id
+        title
+        logoUrl
+        subtitle
+      }
+      currency {
+        id
+        name
+        icon_url
+      }
+      recipients {
+        id
+        data
+        description
+      }
+      recipientSchema
+      minWithdrawAmount
+      maxWithdrawAmount
+      withdrawFee
+      minWithdrawFee
+      maxWithdrawFee
+      maxWithdrawAmount24h
+      withdrawAmount24h
+    }
+  }
+}

@@ -1,0 +1,17 @@
+mutation InitNonCustodial(
+  $provider: String!
+  $inPaymentInterfaceId: String!
+  $inCurrencyId: String!
+  $amount: Float!
+  $slippage: Float!
+  $recipientId: String!
+) {
+  initNonCustodialExternalExchange(
+    provider: $provider
+    inPaymentInterfaceId: $inPaymentInterfaceId
+    inCurrencyId: $inCurrencyId
+    amount: $amount
+    slippage: $slippage
+    recipientId: $recipientId
+  )
+}

@@ -1,0 +1,4 @@
+mutation CancelOrderAction($id: String!) {
+  cancelOrder(id: $id)
+}
+

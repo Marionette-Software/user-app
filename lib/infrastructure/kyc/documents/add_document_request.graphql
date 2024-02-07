@@ -1,0 +1,13 @@
+mutation AddUserDocument(
+  $doc_type: String!
+  $doc_number: String!
+  $file: Upload!
+  $doc_expire: String!
+) {
+  addDocument(
+    doc_type: $doc_type
+    doc_number: $doc_number
+    file: $file
+    doc_expire: $doc_expire
+  )
+}

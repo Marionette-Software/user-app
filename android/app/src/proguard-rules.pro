@@ -1,0 +1,4 @@
+-keep class com.google.firebase.installations.** { *; }
+-dontwarn com.google.firebase.**
+-keep class io.flutter.plugins.firebase.* { *; }
+-keep interface com.google.firebase.installations.** {*;}

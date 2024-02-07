@@ -1,0 +1,151 @@
+name: user_app
+description: Cryptocurrency Exchange Software for Web, iOS & Android
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+version: 1.5.4
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # UI TOOLKIT
+  flutter_screenutil: ^5.8.4
+  flutter_svg: ^2.0.9 # Displaying SVG files
+  qr_flutter: ^4.1.0 # qr codes tool
+  dotted_border: ^2.0.0+3 # Dotted border
+  auto_size_text: ^3.0.0 # Text scaling tool
+  desktop_drop: ^0.4.1 # Dropdown menu for desktop
+  hexcolor: ^3.0.1 # Convert hex to Color
+  image_picker: ^1.0.4
+  flutter_switch: ^0.3.2
+  mask_text_input_formatter: ^2.4.0 # Mask for text input
+  dropdown_button2: ^2.3.8 # Custom dropdown button
+  syncfusion_flutter_datepicker: 23.2.4
+  sliding_up_panel: ^2.0.0+1
+  flutter_countdown_timer: ^4.1.0
+  awesome_snackbar_content: ^0.1.3
+  marquee: ^2.2.3
+  custom_clippers: ^2.0.0
+  percent_indicator: ^4.2.3
+  pie_chart: ^5.3.2
+  expansion_widget: ^0.0.3
+  loading_indicator: ^3.1.1
+  fl_chart: ^0.40.0
+  country_code_picker: ^3.0.0
+  intl_phone_field: ^3.2.0
+  intl_phone_number_input: ^0.7.3+1
+  calendar_date_picker2: ^0.5.3
+  go_router: ^13.0.1
+  flutter_secure_storage: ^9.0.0
+  
+
+  # STATE MANAGEMENT
+  hooks_riverpod: ^2.4.0 # Riverpod with hooks from Remi Rousselet
+  flutter_hooks: ^0.20.1 # Additional hooks' functionality
+
+  #GraphQL
+  gql: 0.14.1-alpha+1666801693402
+  ferry: ^0.14.2+1
+  gql_http_link: ^0.4.4+1
+  ferry_generator: ^0.8.1
+  web_socket_channel: ^2.2.0
+  gql_websocket_link: ^0.3.1
+  ferry_flutter: ^0.8.1
+
+  #NETWORKING
+  #json_annotation: ^4.8.1 # Defines the annotations used by json_serializable
+  json_annotation: 4.7.0
+  equatable: ^2.0.5 # Equatable annotation
+  dio: ^5.1.2
+  open_file: ^3.3.1
+  permission_handler: ^10.2.0
+ 
+  # GLOBAL APP TOOLS
+  package_info_plus: ^4.0.2 # Application info
+  web_browser: ^0.5.0
+  url_launcher: ^6.1.11
+  theme_provider: ^0.6.0
+  webviewx: ^0.2.2
+  csslib: 0.17.0
+  dart_telegram_bot: ^1.0.0
+  flutter_keyboard_visibility: ^5.4.1
+  horizontal_blocked_scroll_physics: ^4.0.1
+
+  # AUTHENTICATION
+  google_sign_in: ^5.2.4
+  # firebase_core: any
+  # firebase_auth: any
+
+  # LOCAL STORAGE
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  hive_generator: ^1.1.3
+
+  #LOCALIZATION
+  easy_localization: ^3.0.2 # Localization tool
+  syncfusion_flutter_charts: 23.1.36
+  syncfusion_flutter_core: 23.2.4
+  teledart: ^0.4.0
+  number_paginator: ^0.3.2
+  slide_action: ^0.0.2
+  easy_cron: ^0.9.2
+  cron: ^0.5.1
+  cron_form_field: ^0.6.0
+  flutter_spinkit: ^5.2.0
+  slider_captcha: ^0.1.10
+  pinput: ^3.0.1
+  pin_code_fields: ^8.0.1
+  country_icons: ^2.0.2
+  clipboard: ^0.1.3
+  infinite_scroll_pagination: ^4.0.0
+  another_flutter_splash_screen: ^1.2.0
+  lottie: ^2.7.0
+  super_tooltip: ^2.0.7
+  el_tooltip: ^2.0.0
+  simple_tooltip: ^1.2.0
+  animated_custom_dropdown: ^3.0.0
+  dropdown_search: ^5.0.6
+  rich_clipboard: ^1.0.1
+
+dependency_overrides:
+  graphql_builder: ^1.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.3
+  build_runner: ^2.4.6 # Generating files using Dart code
+  #flutter_launcher_icons: ^0.13.1 # Launcher icon
+  json_serializable: ^6.5.4
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/ios.png"
+  image_path_android: "assets/launcher/android.png"
+
+flutter:
+  uses-material-design: true
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/lang/Inter-Bold.ttf
+          weight: 700
+        - asset: assets/lang/Inter-SemiBold.ttf
+          weight: 600
+        - asset: assets/lang/Inter-Medium.ttf
+          weight: 500
+        - asset: assets/lang/Inter-Regular.ttf
+          weight: 400
+
+  assets:
+    - assets/lang/ # Localization jsons
+    - assets/icons/ # App icons
+    - assets/splash/ # App splash screen
+    # - assets/fonts/ # App fonts
+    - assets/config.json
+    - assets/mobile_assets/ # Mobile icons

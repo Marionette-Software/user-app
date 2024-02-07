@@ -1,0 +1,13 @@
+mutation SignUp(
+  $email: String!
+  $password: String!
+  $referralId: String
+  $locale: String
+) {
+  signup(
+    email: $email
+    password: $password
+    referralId: $referralId
+    locale: $locale
+  )
+}

@@ -1,0 +1,3 @@
+mutation MoveToAdvancedTradingFunds($currencyId: String!, $amount: Float!) {
+  moveToAdvancedTrading(currencyId: $currencyId, amount: $amount)
+}

@@ -1,0 +1,11 @@
+mutation sendUserDirectDeposit(
+  $currencyPaymentInterfaceId: String!
+  $address: String!
+  $amount: Float!
+) {
+  userDirectDeposit(
+    currencyPaymentInterfaceId: $currencyPaymentInterfaceId
+    address: $address
+    amount: $amount
+  )
+}

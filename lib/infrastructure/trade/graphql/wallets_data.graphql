@@ -1,0 +1,9 @@
+query TradeWalletsData($id: String) {
+  user(id: $id) {
+    currencies {
+      id
+      advancedTradingBalance
+      balance
+    }
+  }
+}

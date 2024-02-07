@@ -1,0 +1,4 @@
+enum PasswordState {
+  visible,
+  invisible,
+}

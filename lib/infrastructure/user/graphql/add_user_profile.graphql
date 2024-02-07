@@ -1,0 +1,19 @@
+mutation AddUserProfile(
+  $first_name: String!
+  $last_name: String!
+  $birth: String!
+  $address: String!
+  $city: String!
+  $country: String!
+  $postcode: String!
+) {
+  addProfile(
+    first_name: $first_name
+    last_name: $last_name
+    birth: $birth
+    address: $address
+    city: $city
+    country: $country
+    postcode: $postcode
+  )
+}

@@ -1,0 +1,15 @@
+query GetStakingCurrency($id: String!) {
+  stakingCurrency(id: $id) {
+    id
+    staking_enabled
+    staking_period
+    staking_apr
+    last_staking_calc
+    next_staking_calc
+    next_reward_amount
+    locked_balance
+    active_balance
+    min_staking_amount
+    isUnstakingProcess
+  }
+}

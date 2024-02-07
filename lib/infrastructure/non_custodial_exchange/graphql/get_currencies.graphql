@@ -1,0 +1,80 @@
+query GetNonCustodialCurrencies {
+  currencies {
+    id
+    name
+    precision
+    icon_url
+    markets(nonCustodialExchangeEnabled: true) {
+      id
+      rate
+      commission_currency
+      base_currency_id
+      minBaseCurrencyAmount
+      base_currency {
+        id
+        name
+        precision
+        icon_url
+        userBalanceEnable
+        currencyPaymentInterfaces(userWithdrawEnabled: true) {
+          type
+          paymentInterface {
+            id
+            title
+            subtitle
+            logoUrl
+          }
+        }
+      }
+      quote_currency {
+        id
+        name
+        precision
+        icon_url
+        userBalanceEnable
+        currencyPaymentInterfaces(userWithdrawEnabled: true) {
+          type
+          paymentInterface {
+            id
+            title
+            subtitle
+            logoUrl
+          }
+        }
+      }
+      quote_currency_id
+      minQuoteCurrencyAmount
+      rate
+      buy_commission
+      buy_max_commission
+      buy_min_commission
+      sell_commission
+      sell_max_commission
+      sell_min_commission
+      enable_non_custodial_exchange
+      swapBaseToQuotePricePrecision
+      swapQuoteToBasePricePrecision
+    }
+    currencyPaymentInterfaces(userDepositEnabled: true) {
+      paymentInterfaceId
+      type
+      paymentInterface {
+        id
+        title
+        logoUrl
+        subtitle
+        blockchain {
+          id
+          name
+          description
+          explorer_address
+          chainId
+          wallet
+        }
+
+      }
+      userDepositEnable
+      userWithdrawEnable
+    }
+  }
+}

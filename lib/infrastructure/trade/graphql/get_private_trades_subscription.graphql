@@ -1,0 +1,14 @@
+subscription GetPrivateTrades($market: String,$token: String!) {
+  privateTrades(
+    market: $market,
+    token: $token
+  ){
+    id
+    amount
+    price
+    side
+    role
+    createdAt
+  }
+}
+

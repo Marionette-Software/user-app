@@ -1,0 +1,28 @@
+{
+    "name": "Marionette",
+    "short_name": "Marionette",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#020C15",
+    "theme_color": "#020C15",
+    "description": "Cryptocurrency Exchange Software for Web, iOS & Android",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/icon-16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

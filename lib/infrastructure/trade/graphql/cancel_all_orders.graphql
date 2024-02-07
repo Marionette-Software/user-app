@@ -1,0 +1,4 @@
+mutation CancelAllOrders($market: String!) {
+  cancelAllOrders(market: $market)
+}
+

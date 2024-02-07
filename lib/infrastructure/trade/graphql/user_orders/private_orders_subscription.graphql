@@ -1,0 +1,51 @@
+subscription PrivateOrdersSubscription($market: String!, $token: String!) {
+  privateOrders(market: $market, token: $token) {
+    id
+    market
+    type
+    side
+    status
+    executedAmount
+    executedVolume
+    user {
+      id
+    }
+    amount
+    price
+    executedAmount
+    executedVolume
+    status
+    createdAt
+    Market {
+      id
+      rate
+      enable_trading
+      quote_currency {
+        id
+        precision
+        icon_url
+        name
+      }
+      base_currency {
+        id
+        precision
+        icon_url
+        name
+      }
+      change24
+      trading_min_price
+      trading_max_price
+      trading_min_amount
+      trading_price_precision
+      trading_amount_precision
+      marketDynamics {
+        marketId
+        startPrice
+        amount24h
+        lastPrice
+        lowPrice
+        highPrice
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+enum TradeHistoryState {
+  publicTradeHistory,
+  myTradeHistory,
+}

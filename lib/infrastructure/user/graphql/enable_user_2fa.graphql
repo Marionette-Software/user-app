@@ -1,0 +1,3 @@
+mutation TurnOn2FA($code: String!) {
+  turnOn2FA(code: $code)
+}

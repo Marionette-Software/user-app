@@ -1,0 +1,3 @@
+mutation setFavoriteMarket($marketId: String!) {
+  setFavoriteMarket(marketId: $marketId)
+}

@@ -1,0 +1,11 @@
+query GetUserTradesHistory($market: String) {
+  userTrades(market: $market) {
+    result {
+      price
+      amount
+      createdAt
+      sellUserId
+      buyUserId
+    }
+  }
+}

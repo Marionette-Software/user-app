@@ -1,0 +1,10 @@
+subscription MarketDynamics($market: String){
+    marketDynamics(market: $market){
+        marketId
+        startPrice
+        lastPrice
+        amount24h
+        lowPrice
+        highPrice
+    }
+}

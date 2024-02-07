@@ -1,0 +1,4 @@
+enum PhoneState {
+  visible,
+  invisible,
+}

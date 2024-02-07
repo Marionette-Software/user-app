@@ -1,0 +1,40 @@
+query GetUpdateUser($id: String) {
+  user(id: $id) {
+    id
+    email
+    enabled2fa
+    role
+    email_verified
+    phone_verified
+    profile_verified
+    documents {
+      doc_type
+      doc_number
+      doc_expire
+      url
+    }
+    state
+    token
+    labels {
+      key
+      value
+      scope
+    }
+    createdAt
+    updatedAt
+    phones {
+      id
+      phone
+      verified
+    }
+    profiles {
+      first_name
+      last_name
+      birth
+      address
+      postcode
+      city
+      country
+    }
+  }
+}

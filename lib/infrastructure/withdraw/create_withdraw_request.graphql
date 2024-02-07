@@ -1,0 +1,13 @@
+mutation CreateWithdrawal(
+  $beneficiary_id: String
+  $amount: Float
+  $code: String
+  $includeFees: Boolean
+) {
+  userWithdraw(
+    recipientId: $beneficiary_id
+    amount: $amount
+    code: $code
+    includeFees: $includeFees
+  )
+}
