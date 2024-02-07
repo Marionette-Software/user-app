@@ -1,6 +1,6 @@
 ## TuneX LLC Marionette Software Creative Commons CC-BY-NC-ND-4.0 International Public License
 
-![](docs/assets/marionettelogowhite.png)
+![](/assets/icons/marionettelogowhite.png)
 
 This Marionette Software Creative Commons Attribution NonCommercial NoDerivatives 4.0 International Public License (CC-BY-NC-ND-4.0) ("License Agreement") governs the use of the software product known as "Marionette Software" ("Software") made available by TuneX LLC ("Licensor") in GitHub repositories (collectively, the "Repositories"). By accessing the code in any of the Repositories or any components related to the Software, you ("Licensee," an "Individual" or "Entity") accept and agree to be bound by the terms and conditions of this License Agreement. Licensee is granted the Licensed Rights defined in this License Agreement, with the understanding that the use of the Software for commercial purposes is restricted. This grant is contingent upon Licensee's acceptance of these terms and conditions. It is acknowledged that this License Agreement may be interpreted as a contractual arrangement, whereby Licensor extends these rights to Licensee under these terms and conditions, in acknowledgment of the benefits received by the Licensor from making the Licensed Material available.
 
