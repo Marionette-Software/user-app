@@ -67,6 +67,6 @@ This License Agreement may only be modified in writing and signed by both partie
 
 ===
 
-![](docs/assets/tunexlogo.png)
+![](/assets/icons/tunexlogo.png)
 
 Head Office: 7 Kruhlouniversytetska St, Office #31, Kyiv, Ukraine 01024 contact: admin@tunex.io - TuneX LLC
