@@ -35,6 +35,8 @@
 
 **More info on Marionette Public Test Drive:** https://marionette.dev/test-drive/
 
+**Latest changelog:** https://tunex.atlassian.net/wiki/spaces/ID/pages/63307795/
+
 **Now let's get started!**
 
 
