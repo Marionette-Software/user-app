@@ -1,4 +1,4 @@
-#### Welcome to Marionette Software Test Drive Configurator!
+#### Welcome to Marionette Software Test Drive!
 
 **Who is Marionette Test Drive for and what can you do with it?**
 
