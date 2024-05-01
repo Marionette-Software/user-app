@@ -11,9 +11,14 @@
 4. Teams who want to build their Proof of Concept and seek public and/or private investment with a go to market ready MVP.
 
 5. Teams can customize the UI with examples and thorough documentation of API's and Architecture.
+
 5.1 User App Architecture: https://tunex.atlassian.net/wiki/spaces/ID/pages/4325435/User+App+Architecture
+
 5.2 Configurations for User App: https://tunex.atlassian.net/wiki/spaces/ID/pages/56950785/Configurations+for+User+App+-+Test+Drive+version+GitHub
+
 5.3 User App Queries, Mutations and Subscriptions: https://tunex.atlassian.net/wiki/spaces/ID/pages/10289175/User+App+Queries+Mutations+and+Subscriptions
+
+5.4 Design in Figma https://www.figma.com/file/u8lfZLtQym0anvPVTU5uvP/Marionette-UserApp-Design-(Feb-24-Public)?type=design&node-id=9552-55411&mode=design&t=QGKffUgkLohJQM2X-0
 
 6. Teams can introduce their custom plugins and features. From introducing 3rd party services like custom bots, to integrating local banks, payment gateways, liquidity providers, market makers as well as very custom and unique user facing services.
 
