@@ -40,7 +40,7 @@
 
 **More info on Marionette Public Test Drive:** https://marionette.dev/test-drive/
 
-**Latest changelog:** https://tunex.atlassian.net/wiki/spaces/ID/pages/89489442
+**Latest changelog:** https://tunex.atlassian.net/wiki/spaces/ID/pages/103448577
 
 **Now let's get started!**
 
